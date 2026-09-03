@@ -1,0 +1,14 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYG{c+cm}{/*}
+\PYG{c+cm}{ * Improved version of the compare method that returns the number of bytes in}
+\PYG{c+cm}{ * the pattern that are different from the ones present in the data array at the}
+\PYG{c+cm}{ * given position.}
+\PYG{c+cm}{ *}
+\PYG{c+cm}{ * Returns the number of characters in the pattern that are different from the}
+\PYG{c+cm}{ * ones present in the indicated position.}
+\PYG{c+cm}{ */}
+\PYG{k+kd}{private}\PYG{+w}{ }\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n+nf}{compareNumErrors}\PYG{p}{(}\PYG{k+kt}{byte}\PYG{o}{[]}\PYG{+w}{ }\PYG{n}{pattern}\PYG{p}{,}\PYG{+w}{ }\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{position}\PYG{p}{)}\PYG{+w}{ }\PYG{k+kd}{throws}\PYG{+w}{ }\PYG{n}{FASTAException}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{c+c1}{// TODO}
+\PYG{+w}{    }\PYG{k}{return}\PYG{+w}{ }\PYG{k+kc}{null}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{MintedVerbatim}
