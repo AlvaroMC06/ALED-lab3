@@ -1,4 +1,0 @@
-\begin{MintedVerbatim}[commandchars=\\\{\}]
-\PYG{k+kd}{protected}\PYG{+w}{ }\PYG{k+kt}{byte}\PYG{o}{[]}\PYG{+w}{ }\PYG{n}{content}\PYG{p}{;}
-\PYG{k+kd}{protected}\PYG{+w}{ }\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{validBytes}\PYG{p}{;}
-\end{MintedVerbatim}
