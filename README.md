@@ -1,4 +1,4 @@
-# AED - Práctica 3: Búsqueda en secuencias de ADN
+# ALED - Práctica 3: Búsqueda en secuencias de ADN
 
 Código base para la práctica 3 de Algoritmos y Estructuras de Datos
 (Grado en Ingeniería Biomédica, UPM).
