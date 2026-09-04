@@ -29,3 +29,8 @@ El código fuente (`src/`) se distribuye bajo licencia MIT. Consulta
 
 Los enunciados (`docs/`) se distribuyen bajo licencia CC BY-NC-SA 4.0.
 Consulta [`LICENSE-DOCS.md`](LICENSE-DOCS.md).
+
+Los ficheros `cromosomes/chr19.fa` y `cromosomes/chr19segment.fa`
+proceden del ensamblado de referencia GRCh38 (Genome Reference
+Consortium) y no están cubiertos por ninguna de las dos licencias. El
+resto de secuencias de `cromosomes/` son sintéticas.
