@@ -5,6 +5,7 @@ import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -135,10 +136,18 @@ public class FASTAReader {
 	 * pattern when one has been found to be different.
 	 */
 	private boolean compareImproved(byte[] pattern, int position) throws FASTAException {
-		// TODO
-		return false;
+		
+		if (position + pattern.length > validBytes) {
+			throw new FASTAException("Pattern goes beyond the end of the file.");
+		}
+		for (int i = 0; i < pattern.length; i++) {
+			if (pattern[i] != content[position + i]) {
+				return false;
+			}
+			
+		}
+		return true;
 	}
-
 	/*
 	 * Improved version of the compare method that returns the number of bytes in
 	 * the pattern that are different from the ones present in the data array at the
@@ -148,9 +157,19 @@ public class FASTAReader {
 	 * ones present in the indicated position.
 	 */
 	private int compareNumErrors(byte[] pattern, int position) throws FASTAException {
-		// TODO
-		return -1;
+		if (position + pattern.length > validBytes) {
+			throw new FASTAException("Pattern goes beyond the end of the file.");
+		}
+		int numBases = 0;
+		for (int i = 0; i < pattern.length; i++) {
+			if (pattern[i] != content[position + i]) {
+				numBases++;
+			}
+			
+		}
+		return numBases;
 	}
+	
 
 	/**
 	 * Implements a linear search to look for the provided pattern in the data
@@ -162,8 +181,20 @@ public class FASTAReader {
 	 *         pattern in the data.
 	 */
 	public List<Integer> search(byte[] pattern) {
-		// TODO
-		return null;
+		List<Integer> secuencia = new ArrayList<>();
+		try {
+			for (int i = 0; i < content.length; i++) {
+				if (compareImproved(pattern, i)) {
+					secuencia.add(i);
+				}
+
+			}
+		}
+
+		catch (FASTAException fE) {
+			System.out.println(fE.getMessage());
+		}
+		return secuencia;
 	}
 
 	/**
@@ -179,8 +210,20 @@ public class FASTAReader {
 	 *         pattern (with up to 1 errors) in the data.
 	 */
 	public List<Integer> searchSNV(byte[] pattern) {
-		// TODO
-		return null;
+		List<Integer> secuencia = new ArrayList<>();
+		try {
+			for (int i = 0; i < content.length; i++) {
+				if (compareNumErrors(pattern, i) < 2) {
+					secuencia.add(i);
+				}
+
+			}
+		}
+
+		catch (FASTAException fE) {
+			System.out.println(fE.getMessage());
+		}
+		return secuencia;
 	}
 
 	public static void main(String[] args) {
@@ -190,7 +233,7 @@ public class FASTAReader {
 			return;
 		System.out.println("Tiempo de apertura de fichero: " + (System.nanoTime() - t1));
 		long t2 = System.nanoTime();
-		List<Integer> posiciones = reader.search(args[1].getBytes());
+		List<Integer> posiciones = reader.searchSNV(args[1].getBytes());
 		System.out.println("Tiempo de búsqueda: " + (System.nanoTime() - t2));
 		if (posiciones.size() > 0) {
 			for (Integer pos : posiciones)
