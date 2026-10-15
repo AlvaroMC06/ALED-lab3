@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import es.upm.dit.aled.lab3.FASTAException;
 import es.upm.dit.aled.lab3.FASTAReader;
 
 /**
@@ -90,7 +91,7 @@ public class FASTAReaderSuffixes extends FASTAReader {
 			int m = (lo + hi) >>> 1;
 			int posSuffix = suffixes[m].suffixIndex;
 			index = 0;
-			while (index == pattern.length && posSuffix + index < validBytes
+			while (index < pattern.length && posSuffix + index < validBytes
 					&& pattern[index] == content[posSuffix + index]) {
 				index++;
 			}
@@ -104,7 +105,25 @@ public class FASTAReaderSuffixes extends FASTAReader {
 				hi = m - 1;
 
 			}
+			if (found) {
+				try {
+				 int left = m - 1;
+				 while(left >= 0 && compareImproved(pattern, suffixes[left].suffixIndex)) {
+					 resultado.add(suffixes[left].suffixIndex);
+					 left--;
+					 
+				 }
+				 int right = m + 1;
+				 while(right < suffixes.length && compareImproved(pattern,suffixes[right].suffixIndex)) {
+					 resultado.add(suffixes[right].suffixIndex);
+					 right++; 
+				 }
+			} catch(FASTAException fE) {
+				System.out.println(fE.getMessage());
+			}
 		}
+		}
+		
 		return resultado;
 
 	}

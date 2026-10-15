@@ -135,7 +135,7 @@ public class FASTAReader {
 	 * Improved version of the compare method that stops checking elements of the
 	 * pattern when one has been found to be different.
 	 */
-	private boolean compareImproved(byte[] pattern, int position) throws FASTAException {
+	protected boolean compareImproved(byte[] pattern, int position) throws FASTAException {
 		
 		if (position + pattern.length > validBytes) {
 			throw new FASTAException("Pattern goes beyond the end of the file.");
@@ -184,7 +184,7 @@ public class FASTAReader {
 		List<Integer> secuencia = new ArrayList<>();
 		try {
 			for (int i = 0; i < content.length; i++) {
-				if (compareImproved(pattern, i)) {
+				if (compareNumErrors(pattern, i) < 2) {
 					secuencia.add(i);
 				}
 
